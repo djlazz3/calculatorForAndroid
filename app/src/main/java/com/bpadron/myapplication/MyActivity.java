@@ -95,8 +95,13 @@ public class MyActivity extends ActionBarActivity {
         textChanger(button.getText());
     }
     public void number0(View view){
+        if (num1.startsWith("0")&& function == ""&& !num1.contains(".")) {
+
+        }
+        else {
             Button button = (Button) findViewById(R.id.number0);
             textChanger(button.getText());
+        }
     }
     public void add(View view) {
         function = "add";
@@ -118,9 +123,18 @@ public class MyActivity extends ActionBarActivity {
         TextView textview = (TextView) findViewById(R.id.Answer);
         textview.clearComposingText();
     }
+    public void point(View view) {
+        Button button = (Button) findViewById(R.id.Point);
+        if (num1.contains(button.getText()) && function == "") {
+        } else if (num2.contains(button.getText())) {
+        } else {
+            textChanger(button.getText());
+        }
+    }
     public void clear(View view) {
         TextView textview = (TextView) findViewById(R.id.Answer);
         textview.clearComposingText();
+        textview.setText("0");
         if (function == "") {
             num1 = "";
         }else
@@ -133,25 +147,25 @@ public class MyActivity extends ActionBarActivity {
             textview.setText("Error");
         }
         else{
-            int int1 = Integer.parseInt(num1);
-            int int2 = Integer.parseInt(num2);
-            int ans = 0 ;
+            float float1 = Float.valueOf(num1);
+            float float2 = Float.valueOf(num2);
+            float ans = 0 ;
             if (function == "add"){
-                ans = int1 + int2;
+                ans = float1 + float2;
             }else if (function == "subtract"){
-                ans = int1 - int2;
+                ans = float1 - float2;
             }else if (function == "multiply"){
-                ans = int1 * int2;
+                ans = float1 * float2;
             }else if (function == "divide"){
-                if (int2 == 0){
+                if (float2 == 0){
                     TextView textview = (TextView) findViewById(R.id.Answer);
                     textview.clearComposingText();
                     textview.setText("Error");
                 }else{
-                    ans = int1 / int2;
+                    ans = float1 / float2;
                 }
             }
-            answer = Integer.toString(ans);
+            answer = Float.toString(ans);
             TextView textview = (TextView) findViewById(R.id.Answer);
             num1 = answer;
             num2 = "";
